@@ -1,0 +1,316 @@
+{
+  "generated_at": "2026-03-08T15:22:00Z",
+  "repo": "satpathysweta/finserv-alpha-monorepo",
+  "total_open_issues": 20,
+  "codebase_summary": {
+    "source_files": ["src/interest_calculator.py"],
+    "test_files": ["tests/test_calculator.py"],
+    "scripts": ["scripts/verify.py"],
+    "knowledge_rules": [
+      "NEVER use float for money; always use decimal.Decimal",
+      "Use Compound Interest formula: A = P(1 + r/n)^{nt}",
+      "Currency must be prefixed with $ and rounded to 2 decimal places"
+    ],
+    "known_bugs_in_code": [
+      "calculate_compound_interest() uses Simple Interest formula instead of Compound",
+      "calculate_compound_interest() uses float instead of decimal.Decimal",
+      "format_currency() uses float rounding, causing precision errors"
+    ]
+  },
+  "workstreams": [
+    {
+      "workstream_id": "WS-1",
+      "name": "Critical Math Logic Fix",
+      "description": "Fix the interest calculation formula from Simple Interest (P * (1 + r*t)) to Compound Interest (P * (1 + r/n)^(nt)) using decimal.Decimal, as mandated by knowledge.md.",
+      "issue_numbers": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+      "target_files": ["src/interest_calculator.py"],
+      "fix_type": "bug"
+    },
+    {
+      "workstream_id": "WS-2",
+      "name": "Float-to-Decimal Refactor",
+      "description": "Refactor all float usage to decimal.Decimal in formatting and math functions, per knowledge.md currency rule.",
+      "issue_numbers": [11, 12, 13, 14, 15, 16, 17, 18, 19, 20],
+      "target_files": ["src/interest_calculator.py"],
+      "fix_type": "refactor"
+    }
+  ],
+  "issues": [
+    {
+      "number": 1,
+      "title": "Critical: Math Error in Module 1",
+      "labels": ["bug", "high-priority"],
+      "priority": "High",
+      "confidence_score": 0.95,
+      "batch_id": "BATCH-1",
+      "workstream": "WS-1",
+      "duplicate_of": null,
+      "stale_or_nonreproducible": false,
+      "notes": "Root issue. The single source file src/interest_calculator.py uses simple interest instead of compound. Fix applies compound formula with Decimal."
+    },
+    {
+      "number": 2,
+      "title": "Critical: Math Error in Module 2",
+      "labels": ["bug", "high-priority"],
+      "priority": "High",
+      "confidence_score": 0.95,
+      "batch_id": "BATCH-1",
+      "workstream": "WS-1",
+      "duplicate_of": 1,
+      "stale_or_nonreproducible": true,
+      "notes": "Duplicate of #1. No 'Module 2' exists in the repo; the only source is src/interest_calculator.py."
+    },
+    {
+      "number": 3,
+      "title": "Critical: Math Error in Module 3",
+      "labels": ["bug", "high-priority"],
+      "priority": "High",
+      "confidence_score": 0.95,
+      "batch_id": "BATCH-1",
+      "workstream": "WS-1",
+      "duplicate_of": 1,
+      "stale_or_nonreproducible": true,
+      "notes": "Duplicate of #1. No 'Module 3' exists in the repo."
+    },
+    {
+      "number": 4,
+      "title": "Critical: Math Error in Module 4",
+      "labels": ["bug", "high-priority"],
+      "priority": "High",
+      "confidence_score": 0.95,
+      "batch_id": "BATCH-1",
+      "workstream": "WS-1",
+      "duplicate_of": 1,
+      "stale_or_nonreproducible": true,
+      "notes": "Duplicate of #1. No 'Module 4' exists in the repo."
+    },
+    {
+      "number": 5,
+      "title": "Critical: Math Error in Module 5",
+      "labels": ["bug", "high-priority"],
+      "priority": "High",
+      "confidence_score": 0.95,
+      "batch_id": "BATCH-1",
+      "workstream": "WS-1",
+      "duplicate_of": 1,
+      "stale_or_nonreproducible": true,
+      "notes": "Duplicate of #1. No 'Module 5' exists in the repo."
+    },
+    {
+      "number": 6,
+      "title": "Critical: Math Error in Module 6",
+      "labels": ["bug", "high-priority"],
+      "priority": "High",
+      "confidence_score": 0.95,
+      "batch_id": "BATCH-1",
+      "workstream": "WS-1",
+      "duplicate_of": 1,
+      "stale_or_nonreproducible": true,
+      "notes": "Duplicate of #1. No 'Module 6' exists in the repo."
+    },
+    {
+      "number": 7,
+      "title": "Critical: Math Error in Module 7",
+      "labels": ["bug", "high-priority"],
+      "priority": "High",
+      "confidence_score": 0.95,
+      "batch_id": "BATCH-1",
+      "workstream": "WS-1",
+      "duplicate_of": 1,
+      "stale_or_nonreproducible": true,
+      "notes": "Duplicate of #1. No 'Module 7' exists in the repo."
+    },
+    {
+      "number": 8,
+      "title": "Critical: Math Error in Module 8",
+      "labels": ["bug", "high-priority"],
+      "priority": "High",
+      "confidence_score": 0.95,
+      "batch_id": "BATCH-1",
+      "workstream": "WS-1",
+      "duplicate_of": 1,
+      "stale_or_nonreproducible": true,
+      "notes": "Duplicate of #1. No 'Module 8' exists in the repo."
+    },
+    {
+      "number": 9,
+      "title": "Critical: Math Error in Module 9",
+      "labels": ["bug", "high-priority"],
+      "priority": "High",
+      "confidence_score": 0.95,
+      "batch_id": "BATCH-1",
+      "workstream": "WS-1",
+      "duplicate_of": 1,
+      "stale_or_nonreproducible": true,
+      "notes": "Duplicate of #1. No 'Module 9' exists in the repo."
+    },
+    {
+      "number": 10,
+      "title": "Critical: Math Error in Module 10",
+      "labels": ["bug", "high-priority"],
+      "priority": "High",
+      "confidence_score": 0.95,
+      "batch_id": "BATCH-1",
+      "workstream": "WS-1",
+      "duplicate_of": 1,
+      "stale_or_nonreproducible": true,
+      "notes": "Duplicate of #1. No 'Module 10' exists in the repo."
+    },
+    {
+      "number": 11,
+      "title": "Audit: Replace floats in Module 11",
+      "labels": ["refactor", "medium-priority"],
+      "priority": "Medium",
+      "confidence_score": 0.90,
+      "batch_id": "BATCH-1",
+      "workstream": "WS-2",
+      "duplicate_of": null,
+      "stale_or_nonreproducible": false,
+      "notes": "Root refactor issue. src/interest_calculator.py uses float in both functions. Migrate to decimal.Decimal."
+    },
+    {
+      "number": 12,
+      "title": "Audit: Replace floats in Module 12",
+      "labels": ["refactor", "medium-priority"],
+      "priority": "Medium",
+      "confidence_score": 0.90,
+      "batch_id": "BATCH-1",
+      "workstream": "WS-2",
+      "duplicate_of": 11,
+      "stale_or_nonreproducible": true,
+      "notes": "Duplicate of #11. No 'Module 12' exists in the repo."
+    },
+    {
+      "number": 13,
+      "title": "Audit: Replace floats in Module 13",
+      "labels": ["refactor", "medium-priority"],
+      "priority": "Medium",
+      "confidence_score": 0.90,
+      "batch_id": "BATCH-1",
+      "workstream": "WS-2",
+      "duplicate_of": 11,
+      "stale_or_nonreproducible": true,
+      "notes": "Duplicate of #11. No 'Module 13' exists in the repo."
+    },
+    {
+      "number": 14,
+      "title": "Audit: Replace floats in Module 14",
+      "labels": ["refactor", "medium-priority"],
+      "priority": "Medium",
+      "confidence_score": 0.90,
+      "batch_id": "BATCH-1",
+      "workstream": "WS-2",
+      "duplicate_of": 11,
+      "stale_or_nonreproducible": true,
+      "notes": "Duplicate of #11. No 'Module 14' exists in the repo."
+    },
+    {
+      "number": 15,
+      "title": "Audit: Replace floats in Module 15",
+      "labels": ["refactor", "medium-priority"],
+      "priority": "Medium",
+      "confidence_score": 0.90,
+      "batch_id": "BATCH-1",
+      "workstream": "WS-2",
+      "duplicate_of": 11,
+      "stale_or_nonreproducible": true,
+      "notes": "Duplicate of #15. No 'Module 15' exists in the repo."
+    },
+    {
+      "number": 16,
+      "title": "Audit: Replace floats in Module 16",
+      "labels": ["refactor", "medium-priority"],
+      "priority": "Medium",
+      "confidence_score": 0.90,
+      "batch_id": "BATCH-1",
+      "workstream": "WS-2",
+      "duplicate_of": 11,
+      "stale_or_nonreproducible": true,
+      "notes": "Duplicate of #11. No 'Module 16' exists in the repo."
+    },
+    {
+      "number": 17,
+      "title": "Audit: Replace floats in Module 17",
+      "labels": ["refactor", "medium-priority"],
+      "priority": "Medium",
+      "confidence_score": 0.90,
+      "batch_id": "BATCH-1",
+      "workstream": "WS-2",
+      "duplicate_of": 11,
+      "stale_or_nonreproducible": true,
+      "notes": "Duplicate of #11. No 'Module 17' exists in the repo."
+    },
+    {
+      "number": 18,
+      "title": "Audit: Replace floats in Module 18",
+      "labels": ["refactor", "medium-priority"],
+      "priority": "Medium",
+      "confidence_score": 0.90,
+      "batch_id": "BATCH-1",
+      "workstream": "WS-2",
+      "duplicate_of": 11,
+      "stale_or_nonreproducible": true,
+      "notes": "Duplicate of #11. No 'Module 18' exists in the repo."
+    },
+    {
+      "number": 19,
+      "title": "Audit: Replace floats in Module 19",
+      "labels": ["refactor", "medium-priority"],
+      "priority": "Medium",
+      "confidence_score": 0.90,
+      "batch_id": "BATCH-1",
+      "workstream": "WS-2",
+      "duplicate_of": 11,
+      "stale_or_nonreproducible": true,
+      "notes": "Duplicate of #11. No 'Module 19' exists in the repo."
+    },
+    {
+      "number": 20,
+      "title": "Audit: Replace floats in Module 20",
+      "labels": ["refactor", "medium-priority"],
+      "priority": "Medium",
+      "confidence_score": 0.90,
+      "batch_id": "BATCH-1",
+      "workstream": "WS-2",
+      "duplicate_of": 11,
+      "stale_or_nonreproducible": true,
+      "notes": "Duplicate of #11. No 'Module 20' exists in the repo."
+    }
+  ],
+  "batches": [
+    {
+      "batch_id": "BATCH-1",
+      "description": "Single PR to fix all issues. Replace simple interest with compound interest formula using decimal.Decimal, and fix format_currency to use Decimal rounding.",
+      "target_files": ["src/interest_calculator.py"],
+      "issues": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20],
+      "estimated_changes": [
+        "Import decimal.Decimal in src/interest_calculator.py",
+        "Rewrite calculate_compound_interest() to use A = P*(1 + r/n)^(nt) with Decimal",
+        "Rewrite format_currency() to use Decimal for precise rounding",
+        "Ensure tests in tests/test_calculator.py pass"
+      ]
+    }
+  ],
+  "duplicate_clusters": [
+    {
+      "canonical_issue": 1,
+      "duplicates": [2, 3, 4, 5, 6, 7, 8, 9, 10],
+      "reason": "All 10 issues have identical body text and reference non-existent modules. Only src/interest_calculator.py exists."
+    },
+    {
+      "canonical_issue": 11,
+      "duplicates": [12, 13, 14, 15, 16, 17, 18, 19, 20],
+      "reason": "All 10 issues have identical body text and reference non-existent modules. Only src/interest_calculator.py exists."
+    }
+  ],
+  "cross_workstream_overlap": {
+    "description": "WS-1 and WS-2 heavily overlap. Fixing the compound interest formula (WS-1) requires migrating to Decimal (WS-2). A single PR (BATCH-1) resolves both workstreams.",
+    "shared_files": ["src/interest_calculator.py"]
+  },
+  "recommendations": [
+    "Close issues #2-#10 as duplicates of #1",
+    "Close issues #12-#20 as duplicates of #11",
+    "Resolve #1 and #11 together in a single PR (BATCH-1)",
+    "After fix, run 'pytest tests/' and 'python3 scripts/verify.py' to validate"
+  ]
+}
