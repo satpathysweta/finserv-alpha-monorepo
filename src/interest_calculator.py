@@ -1,8 +1,18 @@
-def calculate_compound_interest(principal, rate, time):
-    # Intentional Bug: Uses Simple Interest formula instead of Compound
-    # Intentional Bug: Uses floats instead of Decimal (per FinServ standards)
-    return principal * (1 + rate * time) 
+from decimal import Decimal, ROUND_HALF_UP
+
+
+def calculate_compound_interest(principal, rate, time, n=1):
+    """Compound Interest: A = P * (1 + r/n)^(nt) using Decimal."""
+    P = Decimal(str(principal))
+    r = Decimal(str(rate))
+    t = Decimal(str(time))
+    n_d = Decimal(str(n))
+    A = P * (1 + r / n_d) ** (n_d * t)
+    return float(A)
+
 
 def format_currency(amount):
-    # Intentional Bug: Floating point precision error
-    return f"${round(amount, 2)}"
+    """Format amount as currency string with $ prefix, rounded to 2 decimal places using Decimal."""
+    d = Decimal(str(amount))
+    rounded = d.quantize(Decimal("0.01"), rounding=ROUND_HALF_UP)
+    return f"${rounded}"
