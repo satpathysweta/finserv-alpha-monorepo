@@ -1,0 +1,202 @@
+{
+  "generated_at": "2026-03-12T06:15:00Z",
+  "repo": "satpathysweta/finserv-alpha-monorepo",
+  "scope": "10 most recent issues (#26–#35)",
+  "playbook": ".devin/playbooks/priority_engine.md",
+  "codebase_quick_scan": {
+    "source_files": [
+      "src/interest_calculator.py"
+    ],
+    "test_files": [
+      "tests/test_calculator.py"
+    ],
+    "scripts": [
+      "scripts/verify.py"
+    ],
+    "total_source_modules": 1,
+    "import_graph": {
+      "src/interest_calculator.py": {
+        "imported_by": [
+          "tests/test_calculator.py"
+        ],
+        "imported_by_count": 1
+      }
+    },
+    "test_coverage": {
+      "src/interest_calculator.py": {
+        "line_coverage_pct": 100,
+        "statements": 4,
+        "missed": 0,
+        "tests_total": 2,
+        "tests_passing": 1,
+        "tests_failing": 1,
+        "note": "100% line coverage but 1/2 tests fail due to known bugs (simple interest formula instead of compound)."
+      }
+    },
+    "files_referenced_in_issues_but_missing": [
+      "reporting.py",
+      "api_handler.py",
+      "utils.py"
+    ],
+    "known_bugs_in_code": [
+      "calculate_compound_interest() uses Simple Interest formula (P*(1+r*t)) instead of Compound Interest (P*(1+r/n)^(nt))",
+      "calculate_compound_interest() uses float instead of decimal.Decimal",
+      "format_currency() uses float rounding, causing precision errors"
+    ]
+  },
+  "step_1_denoising": {
+    "protocol": "Vanish",
+    "method": "Attempted to reproduce each issue on the main branch by inspecting source files and running the code.",
+    "results": {
+      "active_count": 4,
+      "stale_count": 6
+    }
+  },
+  "issues": [
+    {
+      "number": 35,
+      "title": "Refactor Database Connection Pool",
+      "status": "Stale",
+      "stale_reason": "No database connection pool code exists anywhere in the repository. The repo contains only a single-file interest calculator.",
+      "scoring": null,
+      "bucket": null
+    },
+    {
+      "number": 34,
+      "title": "Integration with Legacy Auth Provider",
+      "status": "Stale",
+      "stale_reason": "No SOAP API integration or auth provider code exists in the repository. The referenced legacy library handling has no footprint in the codebase.",
+      "scoring": null,
+      "bucket": null
+    },
+    {
+      "number": 33,
+      "title": "[ARCHITECTURAL] Migrate Entire Monorepo to Pydantic V2",
+      "status": "Stale",
+      "stale_reason": "Issue describes 40+ modules using standard dictionaries, but the repo has only 1 source module (interest_calculator.py) with no dictionary-based data models or Pydantic usage.",
+      "scoring": null,
+      "bucket": null
+    },
+    {
+      "number": 32,
+      "title": "Floating Point Precision Drift in reporting.py",
+      "status": "Active",
+      "reproduction": "reporting.py does not exist, BUT the underlying bug IS reproducible in src/interest_calculator.py — format_currency() uses float rounding. Example: format_currency(100.000000004) returns '$100.0' instead of '$100.00'.",
+      "scoring": {
+        "business_impact": "High",
+        "business_impact_reason": "Financial precision directly affects revenue calculations; code handles monetary values.",
+        "fixability": "High",
+        "fixability_reason": "Bug is in a local logic file (src/interest_calculator.py). Fix: replace float with decimal.Decimal in format_currency().",
+        "blast_radius": "Low",
+        "blast_radius_reason": "interest_calculator.py is imported by only 1 module (test_calculator.py), well below the >5 threshold.",
+        "regression_risk": "Low",
+        "regression_risk_reason": "Module has 100% line coverage (4/4 statements covered)."
+      },
+      "bucket": "Agent Orchestrator",
+      "bucket_reason": "High Impact + High Fixability → suitable for parallel Devin execution."
+    },
+    {
+      "number": 31,
+      "title": "Implement Leap Year Logic for Annual Interest",
+      "status": "Active",
+      "reproduction": "Confirmed: current formula uses P*(1+r*t) with no day-based logic. Leap year handling is entirely absent. Valid enhancement request.",
+      "scoring": {
+        "business_impact": "High",
+        "business_impact_reason": "Financial accuracy for annual interest is a revenue-critical concern; incorrect day counts produce wrong payouts.",
+        "fixability": "Medium",
+        "fixability_reason": "Requires new calculation logic (day-count convention) beyond a simple one-line fix, but stays within the local logic file.",
+        "blast_radius": "Low",
+        "blast_radius_reason": "interest_calculator.py is imported by only 1 module.",
+        "regression_risk": "Low",
+        "regression_risk_reason": "Module has 100% line coverage; however, new logic will need new tests."
+      },
+      "bucket": "Agent Orchestrator",
+      "bucket_reason": "High Impact + Medium Fixability → suitable for parallel Devin execution."
+    },
+    {
+      "number": 30,
+      "title": "[SECURITY] Sanitize User Input in api_handler.py",
+      "status": "Stale",
+      "stale_reason": "api_handler.py does not exist in the repository. No API handler or input sanitization code is present.",
+      "scoring": null,
+      "bucket": null
+    },
+    {
+      "number": 29,
+      "title": "[CRITICAL] Negative Principal Handling in Math Logic",
+      "status": "Active",
+      "reproduction": "Reproduced: calculate_compound_interest(-1000, 0.05, 2) returns -1100.0 without any validation error. Negative principal is silently accepted.",
+      "scoring": {
+        "business_impact": "High",
+        "business_impact_reason": "Negative principal produces nonsensical negative interest payouts — direct revenue and financial integrity impact.",
+        "fixability": "High",
+        "fixability_reason": "Fix is a simple validation guard in local logic file (src/interest_calculator.py).",
+        "blast_radius": "Low",
+        "blast_radius_reason": "interest_calculator.py is imported by only 1 module.",
+        "regression_risk": "Low",
+        "regression_risk_reason": "Module has 100% line coverage (4/4 statements)."
+      },
+      "bucket": "Agent Orchestrator",
+      "bucket_reason": "High Impact + High Fixability → suitable for parallel Devin execution."
+    },
+    {
+      "number": 28,
+      "title": "Update README with Project Setup Instructions",
+      "status": "Active",
+      "reproduction": "Confirmed: No README.md exists in the repository root.",
+      "scoring": {
+        "business_impact": "Low",
+        "business_impact_reason": "Documentation-only change; does not involve revenue, auth, or security keywords/code.",
+        "fixability": "High",
+        "fixability_reason": "Straightforward documentation task, no code logic involved.",
+        "blast_radius": "Low",
+        "blast_radius_reason": "No code imports affected; documentation file only.",
+        "regression_risk": "Low",
+        "regression_risk_reason": "No code changes required; zero risk of breaking existing functionality."
+      },
+      "bucket": "Auto-Fix",
+      "bucket_reason": "High Fixability + Low Blast Radius + Low Impact → safe for automated fix."
+    },
+    {
+      "number": 27,
+      "title": "Remove Unused Import in utils.py",
+      "status": "Stale",
+      "stale_reason": "utils.py does not exist in the repository. No utility helper file is present.",
+      "scoring": null,
+      "bucket": null
+    },
+    {
+      "number": 26,
+      "title": "Docstring Typo in interest_calculator.py",
+      "status": "Stale",
+      "stale_reason": "interest_calculator.py has no docstrings — only inline comments. The word 'Compound' is spelled correctly in the comments. The reported 'Conpound' typo is not reproducible.",
+      "scoring": null,
+      "bucket": null
+    }
+  ],
+  "bucket_summary": {
+    "Auto-Fix": {
+      "description": "High Fixability + Low Blast Radius + Low Impact. Safe for automated/unattended fix.",
+      "issues": [28]
+    },
+    "Agent Orchestrator": {
+      "description": "High Impact + Medium/High Fixability. Suitable for parallel Devin competition.",
+      "issues": [29, 31, 32]
+    },
+    "Human Engineer": {
+      "description": "High Blast Radius + High Impact + Low Fixability. Requires human judgment.",
+      "issues": []
+    },
+    "Stale": {
+      "description": "Not reproducible on main branch per Step 1 Vanish protocol.",
+      "issues": [26, 27, 30, 33, 34, 35]
+    }
+  },
+  "recommendations": [
+    "Close issues #26, #27, #30, #33, #34, #35 as Stale — they reference files or infrastructure that does not exist in this repository.",
+    "Prioritize #29 (Negative Principal) as the highest-severity active bug — it silently produces incorrect financial outputs.",
+    "Address #32 (Float Precision) alongside any formula fix, since switching to decimal.Decimal resolves both the formula and precision issues.",
+    "#31 (Leap Year) is an enhancement that should be scoped after the core formula is corrected.",
+    "#28 (README) can be auto-fixed with minimal risk."
+  ]
+}
