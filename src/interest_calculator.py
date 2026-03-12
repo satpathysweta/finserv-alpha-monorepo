@@ -24,7 +24,6 @@ def calculate_compound_interest(principal, rate, time, n=1):
     amount = p * (1 + r / n_d) ** (n_d * t)
     return amount.quantize(Decimal("0.01"), rounding=ROUND_HALF_UP)
 
-
 def format_currency(amount):
     """Format a numeric amount as a USD currency string.
 
