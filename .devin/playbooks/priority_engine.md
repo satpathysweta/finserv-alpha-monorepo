@@ -22,4 +22,4 @@ Assign each issue to one of the following buckets based on the scores: [cite: 54
 * **Human Engineer**: High Blast Radius + High Impact + Low Fixability. [cite: 54]
 
 ## Output Format
-Generate a triage_manifest.json in the root directory. [cite: 56]
+Generate a triage_manifest_new.json in the root directory. [cite: 56]
